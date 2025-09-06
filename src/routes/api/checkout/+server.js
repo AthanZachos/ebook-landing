@@ -30,7 +30,7 @@ export const POST = async() => {
     } catch(error){
         console.error('checkout error', error);
         // Return a 500 and a plain string message
-        return json({ error: err.message ?? 'Internal error' }, { status: 500 });
+        return json({ error: error.message ?? 'Internal error' }, { status: 500 });
     }
 
 }
