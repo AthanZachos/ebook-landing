@@ -4,6 +4,9 @@ import { STRIPE_API_KEY, PRICE_ID } from "$env/static/private";
 import { PUBLIC_FRONTEND_URL } from "$env/static/public";
 
 const stripe = new Stripe(STRIPE_API_KEY);
+console.log(stripe);
+console.log(STRIPE_API_KEY);
+console.log(PRICE_ID);
 
 export const POST = async() => {
     try{
