@@ -4,12 +4,15 @@ import { STRIPE_API_KEY, PRICE_ID } from "$env/static/private";
 import { PUBLIC_FRONTEND_URL } from "$env/static/public";
 
 const stripe = new Stripe(STRIPE_API_KEY);
-console.log(stripe);
-console.log(STRIPE_API_KEY);
-console.log(PRICE_ID);
 
 export const POST = async() => {
     try{
+
+        if (!STRIPE_API_KEY || !PRICE_ID) {
+        // Fail loudly if envs are missing
+        console.error('Missing STRIPE_API_KEY or PRICE_ID');
+        return json({ error: 'Server not configured' }, { status: 500 });
+        }
         const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         line_items: [
@@ -25,8 +28,9 @@ export const POST = async() => {
 
     return json({sessionId: session.id});
     } catch(error){
-        console.log(error);
-        return json({error})
+        console.error('checkout error', err);
+        // Return a 500 and a plain string message
+        return json({ error: err.message ?? 'Internal error' }, { status: 500 });
     }
 
 }

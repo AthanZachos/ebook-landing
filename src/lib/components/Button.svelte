@@ -7,6 +7,7 @@
 
   const onclick = async() => {
     try{
+      
       const stripe = await loadStripe(PUBLIC_STRIPE_KEY);
 
       const response = await fetch("/api/checkout", {
