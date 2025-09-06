@@ -23,6 +23,7 @@
       await stripe.redirectToCheckout({sessionId});
     } catch(err){
       goto("/checkout/failure")
+      console.log(err);
     }
 
   }
