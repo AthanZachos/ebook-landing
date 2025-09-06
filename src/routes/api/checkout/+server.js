@@ -3,7 +3,7 @@ import { json } from "@sveltejs/kit";
 import { STRIPE_API_KEY, PRICE_ID } from "$env/static/private";
 import { PUBLIC_FRONTEND_URL } from "$env/static/public";
 
-const stripe = Stripe(STRIPE_API_KEY);
+const stripe = new Stripe(STRIPE_API_KEY);
 
 export const POST = async() => {
     try{
@@ -22,6 +22,7 @@ export const POST = async() => {
 
     return json({sessionId: session.id});
     } catch(error){
+        console.log(error);
         return json({error})
     }
 
