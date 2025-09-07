@@ -1,0 +1,7 @@
+{
+  "framework": "svelte",
+  "sourceMaps": true,
+  "frameworkVersion": "5",
+  "projectType": "sveltekit",
+  "language": "typescript"
+}
